@@ -15,7 +15,7 @@ A reusable GitHub Action that automatically creates a version tag for each commi
 
 | Input | Required | Default | Description |
 |---|---|---|---|
-| `bump_type` | no | `micro` | Version component to increment: `major`, `minor`, or `micro` |
+| `bump_type` | no | `minor` | Version component to increment: `major`, `minor`, or `micro` |
 | `initial_version` | no | `0.0.1` | Version to use when no previous tag exists |
 | `prefix` | no | `v` | Tag prefix (e.g. `v` produces tags like `v1.2.3`) |
 
@@ -50,7 +50,7 @@ jobs:
         id: tag
         uses: monperrus/auto-tag-action@main
         with:
-          bump_type: micro   # or major / minor
+          bump_type: minor   # or major / micro
 ```
 
 ## License
