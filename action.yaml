@@ -1,0 +1,34 @@
+name: "auto-tag-action"
+description: "Automatically creates a version tag for each commit pushed to main. The version is computed by incrementing the previous tag."
+inputs:
+  bump_type:
+    description: "Version component to increment: major, minor, or micro"
+    required: false
+    default: "micro"
+  initial_version:
+    description: "Version to use when no previous tag exists"
+    required: false
+    default: "0.0.1"
+  prefix:
+    description: "Tag prefix (e.g. 'v' produces tags like v1.2.3)"
+    required: false
+    default: "v"
+outputs:
+  new_tag:
+    description: "The new tag that was created"
+    value: ${{ steps.create_tag.outputs.new_tag }}
+  previous_tag:
+    description: "The previous tag (empty if this is the first tag)"
+    value: ${{ steps.create_tag.outputs.previous_tag }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Create version tag
+      id: create_tag
+      shell: bash
+      env:
+        BUMP_TYPE: ${{ inputs.bump_type }}
+        INITIAL_VERSION: ${{ inputs.initial_version }}
+        PREFIX: ${{ inputs.prefix }}
+      run: bash ${{ github.action_path }}/tag.sh
