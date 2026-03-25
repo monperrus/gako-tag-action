@@ -1,6 +1,6 @@
 # auto-tag-action
 
-A reusable GitHub Action that automatically creates a version tag for each commit pushed to `main`. The version number is computed by incrementing the previous tag, following the same scheme used in [pyproject-bump-pypi](https://github.com/monperrus/pyproject-bump-pypi).
+A reusable GitHub Action that automatically creates a version tag for each commit pushed to `main`. The version number is computed by incrementing the previous tag, according to bump_type.
 
 ## How It Works
 
